@@ -8,7 +8,6 @@ class Train{
 }
 // firebase
 var firebaseConfig = {
-  apiKey: "AIzaSyBGTThuvE93KPnQXhZqYAoN2XIlq-FOBW0",
   authDomain: "bootcamptest-b41c5.firebaseapp.com",
   databaseURL: "https://bootcamptest-b41c5.firebaseio.com",
   projectId: "bootcamptest-b41c5",
