@@ -1,0 +1,83 @@
+<!-- Basic outline for starting index -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Document</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="./assests/css/style.css">
+</head>
+<body>
+<div class="jumbotron">
+  <h1 class="display-4">Train Tracker!</h1>
+  <p class="lead">Input a new train schedule in the form below to add to your tracked trains!</p>
+  <hr class="display-4">
+  <p class="display-10">Make us your homepage so you'll always know when the train comes!</p>
+</div>
+
+<div class="card">
+  <table class="table">
+    <thead class="trainTrackerTable thead-dark">
+      <tr>
+        <th scope="col">Train Name</th>
+        <th scope="col">Destination</th>
+        <th scope="col">Frequency (min)</th>
+        <th scope="col">Next Arival</th>
+        <th scope="col">Minutes Away</th>
+      </tr>
+    </thead>
+    <tbody id="newTrainGoesHere">
+    </tbody>
+  </table>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Add a train.</h5>
+    <p class="card-text">Use this card to add a train to the list.</p>
+    <hr />
+    
+    <form id="addTrainForm">
+      <div class="form-group">
+        <label for="trainName" class="labelText">Train Name:</label><br />
+        <input id="trainName" class="form-control formTextBox" type="text"><br />
+      </div>
+      <div class="form-group">
+        <label for="trainDestination" class="labelText">Destination:</label><br />
+        <input id="trainDestination" class="form-control formTextBox" type="text"><br />
+      </div>
+      <div class="form-group">
+        <label for="trainDeparture" class="labelText">First train departure:</label><br />
+        <input id="trainDeparture" class="form-control formTextBox" type="text"><br />
+      </div>
+      <div class="form-group">
+        <label for="trainFrequency" class="labelText">Frequency (min):</label><br />
+        <input id="trainFrequency" class="form-control formTextBox" type="text"><br />
+      </div>
+      <hr />
+      <button id="addTrainButton" class="btn-md btn-primary">Submit</button>
+    </form>
+  </div> <!--card end-->
+
+
+
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+    <!-- Specific Firebase products we want (Database) -->
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>    
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     <!-- Added Moment JS -->
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
+    <!-- My JavaScript -->
+  <script type="text/javascript" src="./assests/javascript/app.js"></script>
+</body>
+</html>
