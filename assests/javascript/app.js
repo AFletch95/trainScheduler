@@ -1,3 +1,10 @@
+
+// Variables
+var trainList=[]
+//================
+
+
+
 class Train{
   constructor(name,destination,frequency,firstDeparture){
     this.name = name;
@@ -8,6 +15,7 @@ class Train{
 }
 // firebase
 var firebaseConfig = {
+  apiKey: "AIzaSyBGTThuvE93KPnQXhZqYAoN2XIlq-FOBW0",
   authDomain: "bootcamptest-b41c5.firebaseapp.com",
   databaseURL: "https://bootcamptest-b41c5.firebaseio.com",
   projectId: "bootcamptest-b41c5",
@@ -18,6 +26,36 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 var database = firebase.database();
+
+// TODO: get each train from database and add to the trainList
+
+// *Database data stored like:     databaseURL: "https://bootcamptest-b41c5.firebaseio.com",
+// bootcamptest-b41c5
+  // -LndoriCeAfzrR-DejZT
+    // destination: "london"
+    // firstDeparture: "12:00"
+    // frequency: "5"
+    // name: "t1"
+  // LndovA5pfebY334gGPm
+  // -Lndp5O6F5Wb7ONxJdV0
+  // -Lndq9cD-y7qAG2kiKrC
+
+  // 1) Get the "train" from the database and push it onto the trainList array
+  // 2) Do that for each element in the database
+  // 3) Pass that array into the buildTable function
+
+  // *My problem is that I cannot figure out the right command to access my data correctly*
+  // *I may need to store the data differently to access the data that I want*
+
+
+  database.ref().on("value", function(snapshot){
+    console.log(snapshot.val())
+  });
+
+
+
+//================
+
 
 // time converters
 function calcMinTillTrain(train){
@@ -33,7 +71,7 @@ function calcNextArival(train){
   return nextTrain;
 }
 
-// Add train to list
+// Takes a train obj passed into the function and accesses its members to populate the table
 function addTrainToTable(newTrain){
   var $trainTable = $('#newTrainGoesHere');
   // Create elements
@@ -43,7 +81,7 @@ function addTrainToTable(newTrain){
   var tdFreq = $('<td>');
   var tdArival = $('<td>');
   var tdMin = $('<td>');
-  // Store info
+  // Store data
   tdName.text(newTrain.name);
   tdDest.text(newTrain.destination);
   tdFreq.text(newTrain.frequency);
@@ -53,11 +91,12 @@ function addTrainToTable(newTrain){
   tr.append(tdName,tdDest,tdFreq,tdArival,tdMin);
   $trainTable.append(tr);
 }
-function buildTable(){
+// Loop through the trainList and add each train to the table
+function buildTable(list){
   $('#newTrainGoesHere').empty();
-  for(let i=0;i<trainList.length;i++)
+  for(let i=0;i<list.length;i++)
   {
-    addTrainToTable(trainList[i]);
+    addTrainToTable(list[i]);
   }
 }
   // Form control
@@ -70,19 +109,11 @@ $('#addTrainButton').on("click",function(event){
   // create new train
   let train = new Train(trainName,trainDest,trainFreq,trainDepart)
   trainList.push(train);
-
-    // addTrainToTable(train); // testing purposes
-
   console.log(trainList);
-  database.ref().push(train);
+  database.ref().set("train",train); // **This is where I store the data to the database**
   //Empty text boxes
   $('#trainName').val("");
   $('#trainDestination').val("");
   $('#trainDeparture').val("");
   $('#trainFrequency').val("");
 });
-
-// Variables
-  var trainList=[]
-//================
-
