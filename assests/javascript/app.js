@@ -49,7 +49,11 @@ var database = firebase.database();
 
 
   database.ref().on("value", function(snapshot){
-    console.log(snapshot.val())
+    console.log(snapshot.val());
+    let data = snapshot.val();
+    console.log(data[0],data[1]);
+
+      addTrainToTable(data);
   });
 
 
@@ -110,7 +114,7 @@ $('#addTrainButton').on("click",function(event){
   let train = new Train(trainName,trainDest,trainFreq,trainDepart)
   trainList.push(train);
   console.log(trainList);
-  database.ref().set("train",train); // **This is where I store the data to the database**
+  database.ref().push(train); // **This is where I store the data to the database**
   //Empty text boxes
   $('#trainName').val("");
   $('#trainDestination').val("");
