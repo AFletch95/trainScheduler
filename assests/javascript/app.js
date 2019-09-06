@@ -52,8 +52,8 @@ var database = firebase.database();
     console.log(snapshot.val());
     let data = snapshot.val();
     console.log(data[0],data[1]);
-
-      addTrainToTable(data);
+    console.log(Object.values(data))
+      buildTable(Object.values(data));
   });
 
 
